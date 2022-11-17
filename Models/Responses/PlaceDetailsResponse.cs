@@ -8,25 +8,26 @@ namespace GooglePlaces.Models.Responses
     public class PlaceDetailsResponse
     {
         [JsonPropertyName("html_attributions")]
-        public IEnumerable<object> HtmlAttributions { get; set; }
+        public IEnumerable<object> HtmlAttributions { get; set; } = Enumerable.Empty<object>();
 
         [JsonPropertyName("result")]
-        public PlaceDetailsResponseResult Result { get; set; }
+        public PlaceDetailsResponseResult Result { get; set; } = new PlaceDetailsResponseResult();
 
+        // check status transformation to enum
         [JsonPropertyName("status")]
-        public string Status { get; set; } // check status transformation to enum
+        public string Status { get; set; }  = string.Empty;
     }
 
     public class PlaceDetailsResponseResult
     {
         [JsonPropertyName("business_status")]
-        public string BusinessStatus { get; set; }
+        public string BusinessStatus { get; set; } = string.Empty;
 
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
         [JsonPropertyName("opening_hours")]
-        public OpenHours OpeningHours { get; set; }
+        public OpenHours OpeningHours { get; set; } = new OpenHours();
 
     }
 
@@ -36,16 +37,16 @@ namespace GooglePlaces.Models.Responses
         public bool OpenNow { get; set; }
 
         [JsonPropertyName("periods")]
-        public IEnumerable<OpenPeriods> periods { get; set; }
+        public IEnumerable<OpenPeriods> periods { get; set; } = Enumerable.Empty<OpenPeriods>();
     }
 
     public class OpenPeriods
     {
         [JsonPropertyName("close")]
-        public OpenPeriodDetails Close { get; set; }
+        public OpenPeriodDetails Close { get; set; } = new OpenPeriodDetails();
 
         [JsonPropertyName("open")]
-        public OpenPeriodDetails Open { get; set; }
+        public OpenPeriodDetails Open { get; set; } = new OpenPeriodDetails();
     }
 
     public class OpenPeriodDetails
@@ -54,7 +55,7 @@ namespace GooglePlaces.Models.Responses
         public int Day { get; set; }
 
         [JsonPropertyName("time")]
-        public string Time { get; set; }
+        public string Time { get; set; } = string.Empty;
     }
 
     public enum PlacesDetailsStatus
